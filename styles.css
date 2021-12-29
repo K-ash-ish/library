@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;   
+    background-color: #F1F5F8;
+}
+header{
+    text-align: center;
+    margin: 1em;
+    color: #F05454;
+}
+table{
+    /* border-spacing: 4em 1em ; */
+    border-collapse: collapse;
+}
+
+.underline{
+    margin-left: auto;
+    margin-right: auto;
+    width: 5rem;
+    height: 0.1rem;
+    background-color: #30475E;
+}
+
+.container{
+    display: grid;
+    place-items: center;
+}
+.info .add-book{
+    border: none;
+    font-style: 'Roboto';
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 2em;
+    background-color: #F1F5F8;
+    margin-bottom: 1em;
+    transition: 0.7s ease;
+    background-color: #F1F5F8;
+    padding: 0.8em 2em;
+}
+.add-book:hover{
+    transition: 0.8s ease;
+    color: #F05454;
+    border-radius: 1em;
+}
+
+.table-head{
+    color: #30475E;
+    padding: 1em 2em;
+    background-color: #B1D0E0;
+}
+.table-data{
+    text-align: center;
+    padding: 1em 0;
+    border-bottom: 1px solid #B1D0E0;
+}
+.add-book-info{
+    display: grid;
+    place-items: center;
+    width: 500px;
+    font-weight: 700;
+    background-color: #B1D0E0;
+    padding: 1em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    border-radius: 1em;
+}
+.info label{  
+    width: 100px;
+    display: inline-block;
+    margin-bottom: 1em;
+}
+.info input {
+    border: none;
+    padding: 0.3em;
+    border-radius: 0.3em;
+}

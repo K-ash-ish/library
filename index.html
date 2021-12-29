@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Library</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>Library</h1>
+            <div class="underline"></div>
+        </header>
+        <main class="container">
+            <div class="add-book-info">
+                <form action="">
+                    <div class="info">
+                        <label for="book-name">Book: </label> 
+                        <input required type="text" name="" id="book-name">
+                    </div>
+                    <div class="info">
+                        <label for="author-name">Author: </label>
+                        <input required type="text" name="" id="author-name">
+                    </div>
+                    <div class="info">
+                        <label for="total-pages">Pages: </label> 
+                        <input required type="text" name="" id="total-pages">
+                    </div>
+                    <div class="info">
+                        <label for="read-status">Read: </label> 
+                        <input required type="checkbox" name="" id="read-status">
+                    </div>
+                    <div class="info">
+                        <label for="add"></label>
+                        <input class="add-book" type="button" value="Add">  
+                    </div>
+                </form>
+            </div>
+            <section class="about-books">
+            <table>
+                <thead class="table-row-head">
+                    <tr>
+                        <th class="table-head">Book Name</th>
+                        <th class="table-head">Author</th>
+                        <th class="table-head">Number of Pages</th>
+                        <th class="table-head">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-row-data">
+                        <td class="table-data">SpiderMan</td>
+                        <td class="table-data">Stan lee</td>
+                        <td class="table-data">234</td>
+                        <td class="table-data">Not read</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <section class="modal ">
+    </section>
+
+    <script src="index.js"></script>
+</body>
+</html>
