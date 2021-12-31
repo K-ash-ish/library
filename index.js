@@ -16,14 +16,15 @@ window.addEventListener("DOMContentLoaded", function(){
 
 });
 
+//button to add the books
 addBook.addEventListener("click", function(){
     Book();
     displayBook();
 });
 
+/// displaying book to the page
 function displayBook(){
     let displayBooks = myLibrary.map(function(item){
-        console.log(item);
         return `
         <tr>
             <td class="table-data name">${item.name}</td>
@@ -38,14 +39,20 @@ function displayBook(){
     return displayBooks;
 }
 
+
+//adding book to array myLibrary
 function Book(){
     let book = {};
     book.name= bookName.value;
     book.author = authorName.value;
     book.pages = totalPages.value;
-    book.read = readStatus.value;
+    if(readStatus.checked){
+        book.read = readStatus.value;
+    }
+    else{
+        book.read = "Not Read";
+    }
     myLibrary.push(book);
 }
-
 
 
