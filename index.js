@@ -11,15 +11,13 @@ let myLibrary = [
 ];
 
 
-window.addEventListener("DOMContentLoaded", function(){
-    displayBook();
-
-});
+window.addEventListener("DOMContentLoaded", displayBook);
 
 //button to add the books
 addBook.addEventListener("click", function(){
     Book();
     displayBook();
+    clearInput();
 });
 
 /// displaying book to the page
@@ -55,4 +53,10 @@ function Book(){
     myLibrary.push(book);
 }
 
+
+// clearing form input text
+
+function clearInput(){
+    document.querySelector(".book-form").reset();
+}
 
