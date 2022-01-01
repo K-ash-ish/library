@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Library</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     </head>
     <body>
         <header>
@@ -14,18 +15,18 @@
         </header>
         <main class="container">
             <div class="add-book-info">
-                <form class="book-form" action="">
+                <form id="book-form" >
                     <div class="info">
                         <label for="book-name">Book: </label> 
-                        <input  required type="text" name="" id="book-name">
+                        <input   type="text" name="" id="book-name" required>
                     </div>
                     <div class="info">
                         <label for="author-name">Author: </label>
-                        <input required type="text" name="" id="author-name">
+                        <input  type="text" name="" id="author-name" required>
                     </div>
                     <div class="info">
                         <label for="total-pages">Pages: </label> 
-                        <input required type="text" name="" id="total-pages">
+                        <input  type="text" name="" id="total-pages" required>
                     </div>
                     <div class="info">
                         <label for="read-status">Read: </label> 
@@ -33,7 +34,7 @@
                     </div>
                     <div class="info">
                         <label for="add"></label>
-                        <input class="add-book" type="button" value="Add">  
+                        <input class="add-book" type="submit" value="Add">  
                     </div>
                 </form>
             </div>
@@ -45,6 +46,7 @@
                         <th class="table-head">Author</th>
                         <th class="table-head">Number of Pages</th>
                         <th class="table-head">Status</th>
+                        <th class="table-head"></th>
                     </tr>
                 </thead>
                 <tbody class="table-data">

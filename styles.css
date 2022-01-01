@@ -80,3 +80,13 @@ table{
     padding: 0.3em;
     border-radius: 0.3em;
 }
+/* delete book button */
+.fa-trash-alt{
+    color: red;
+    cursor: pointer;
+
+}
+.fa-trash-alt:hover{
+    transition: 0.5s;
+    transform: rotate(20deg);
+}
