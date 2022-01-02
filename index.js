@@ -82,7 +82,10 @@ function deleteBook(el, del){
 
 //getting target element to delete book from library
 tableData.addEventListener("click", (e)=>{
-    let del = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
-    deleteBook(e.target, del);
+    if(e.target.classList[2] == "delete"){
+        let del = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+        deleteBook(e.target, del);
+    }
 });
+
 
