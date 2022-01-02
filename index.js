@@ -1,4 +1,4 @@
-const bookName = document.querySelector("#book-name");
+ const bookName = document.querySelector("#book-name");
 const authorName = document.querySelector("#author-name");
 const totalPages = document.querySelector("#total-pages");
 const readStatus = document.querySelector("#read-status");
@@ -22,7 +22,7 @@ document.querySelector("#book-form").addEventListener("submit", function(e){
 
 /// displaying book to the page
 function displayBook(){
-    // myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]")
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]")
     let displayBooks = myLibrary.map(function(item){
         return `
         <tr>
@@ -51,9 +51,13 @@ function Book(){
     }
     else{
         book.read = "Not Read";
-    }
+   }
+   addBooks(book);
+}
+
+function addBooks(book){
     myLibrary.push(book);
-    // localStorage.setItem("myLibrary" , JSON.stringify(myLibrary));s
+    localStorage.setItem("myLibrary" , JSON.stringify(myLibrary));
 }
 
 
@@ -64,15 +68,23 @@ function clearInput(){
 }
 
 // Delete book button
-function deleteBook(el){
+function deleteBook(el, del){
     if(el.classList.contains('delete')){
         el.parentElement.parentElement.remove();
     }
+    myLibrary.forEach((book,index) =>{
+        if(book.name == del){
+            myLibrary.splice(index, 1);
+            localStorage.clear();
+            localStorage.setItem("myLibrary" , JSON.stringify(myLibrary));
 
+        }
+    });
 }
 
-
+//getting target element to delete book from library
 tableData.addEventListener("click", (e)=>{
-    deleteBook(e.target);
+    let del = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+    deleteBook(e.target, del);
 });
 
