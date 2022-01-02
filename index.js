@@ -75,9 +75,7 @@ function deleteBook(el, del){
     myLibrary.forEach((book,index) =>{
         if(book.name == del){
             myLibrary.splice(index, 1);
-            localStorage.clear();
             localStorage.setItem("myLibrary" , JSON.stringify(myLibrary));
-
         }
     });
 }
