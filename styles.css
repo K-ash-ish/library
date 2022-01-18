@@ -84,7 +84,6 @@ table{
 .fa-trash-alt{
     color: red;
     cursor: pointer;
-
 }
 .fa-trash-alt:hover{
     transition: 0.5s;

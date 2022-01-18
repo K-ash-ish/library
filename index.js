@@ -1,91 +1,39 @@
- const bookName = document.querySelector("#book-name");
-const authorName = document.querySelector("#author-name");
-const totalPages = document.querySelector("#total-pages");
-const readStatus = document.querySelector("#read-status");
-const tableData = document.querySelector(".table-data");
-const addBook = document.querySelector(".add-book");
+class Books{
+    constructor(bookName, authorName, pages, readStatus){
+        this.bookName = bookName;
+        this.authorName = authorName;
+        this.pages = pages;
+        this.readStatus = readStatus;
+    }
+}
 
-let myLibrary = [
+class BookList {
+    myLibrary = [
+        new Books("SpiderMan", "Stan Lee", 123, "Read" ),
+        new Books("IronMan", "Stan Lee", 223, "Not Read" )
+    ];
 
-];
-
-//load book if any are present in the array;
-window.addEventListener("DOMContentLoaded", displayBook);
-
-//button to add the books
-document.querySelector("#book-form").addEventListener("submit", function(e){
-    e.preventDefault();
-    Book();
-    displayBook();
-    clearInput();
-});
-
-/// displaying book to the page
-function displayBook(){
-    myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]")
-    let displayBooks = myLibrary.map(function(item){
-        return `
-        <tr>
-            <td class="table-data name">${item.name}</td>
-            <td class="table-data author">${item.author}</td>
-            <td class="table-data pages">${item.pages}</td>
-            <td class="table-data read">${item.read}</td>
+    render(){
+        const renderHook = document.querySelector(".table-data");
+        for (const book of this.myLibrary){
+            const bookData = document.createElement("tr");
+            // console.log(book.bookName)
+            bookData.innerHTML = `
+            <td class="table-data name">${book.bookName}</td>
+            <td class="table-data author">${book.authorName}</td>
+            <td class="table-data pages">${book.pages}</td>
+            <td class="table-data read">${book.readStatus}</td>
             <td><i class="far fa-trash-alt delete"></i></td>
-        </tr>   
-        `;
-    });
-    displayBooks = displayBooks.join("");
-    tableData.innerHTML = displayBooks;
-    return displayBooks;
-}
-
-
-//adding book to array myLibrary
-function Book(){
-    let book = {};
-    book.name= bookName.value;
-    book.author = authorName.value;
-    book.pages = totalPages.value;
-    if(readStatus.checked){
-        book.read = readStatus.value;
-    }
-    else{
-        book.read = "Not Read";
-   }
-   addBooks(book);
-}
-
-function addBooks(book){
-    myLibrary.push(book);
-    localStorage.setItem("myLibrary" , JSON.stringify(myLibrary));
-}
-
-
-// clearing form input text
-
-function clearInput(){
-    document.querySelector("#book-form").reset();
-}
-
-// Delete book button
-function deleteBook(el, del){
-    if(el.classList.contains('delete')){
-        el.parentElement.parentElement.remove();
-    }
-    myLibrary.forEach((book,index) =>{
-        if(book.name == del){
-            myLibrary.splice(index, 1);
-            localStorage.setItem("myLibrary" , JSON.stringify(myLibrary));
+            `        
+            renderHook.append(bookData)
         }
-    });
+    }
+}
+class UserInput{
+
 }
 
-//getting target element to delete book from library
-tableData.addEventListener("click", (e)=>{
-    if(e.target.classList[2] == "delete"){
-        let del = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
-        deleteBook(e.target, del);
-    }
-});
+const bookList = new BookList();
+bookList.render();
 
 
