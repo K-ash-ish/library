@@ -7,47 +7,84 @@ class Books{
     }
 }
 
-class BookList {
-    myLibrary = [
-        new Books("SpiderMan", "Stan Lee", 123, "Read" ),
-        new Books("IronMan", "Stan Lee", 223, "Not Read" )
-    ];
-    
-    render(){
+class BookLocalStore {
+    static getBooks(){
+        let books;
+        books = JSON.parse(localStorage.getItem("books") || "[]");
+        return books;
+    }
+    static addBook(book){
+        const books = BookLocalStore.getBooks();
+        books.push(book);
+        localStorage.setItem("books", JSON.stringify(books))
+    }
+    static removeBook(del){
+        const books = BookLocalStore.getBooks();
+        books.forEach((book,index) =>{
+            if(book.bookName == del){
+                books.splice(index, 1);
+            }
+        });
+        localStorage.setItem("books", JSON.stringify(books))
+    }
+}
+
+class Library {
+    static render(){
+        const myLibrary = BookLocalStore.getBooks();
+        const books = myLibrary;
+        books.forEach((book) => Library.addBooks(book))
+        
+    }
+    static addBooks(book){
         const renderHook = document.querySelector(".table-data");
-        for (const book of this.myLibrary){
-            const bookData = document.createElement("tr");
-            // console.log(book.bookName)
-            bookData.innerHTML = `
-            <td class="table-data name">${book.bookName}</td>
-            <td class="table-data author">${book.authorName}</td>
-            <td class="table-data pages">${book.pages}</td>
-            <td class="table-data read">${book.readStatus}</td>
-            <td><i class="far fa-trash-alt delete"></i></td>
-            `        
-            renderHook.append(bookData)
+        const bookData = document.createElement("tr");
+        bookData.innerHTML = `
+        <td class="table-data name">${book.bookName}</td>
+        <td class="table-data author">${book.authorName}</td>
+        <td class="table-data pages">${book.pages}</td>
+        <td class="table-data read">${book.readStatus}</td>
+        <td><i class="far fa-trash-alt delete"></i></td>
+        `        
+        renderHook.append(bookData)
+    }
+    
+    static clearField(){
+        document.querySelector("#book-form").reset();
+    }
+    static removeBook(el){
+        
+        if(el.classList.contains('delete')){
+            el.parentElement.parentElement.remove();
         }
-    }
-}
-class AddBooks  extends BookList{
-    userInput(){
-        // const addbtn = document.querySelector(".add-book");
-        document.querySelector("#book-form").addEventListener("submit", function(e){
-            e.preventDefault();
-            const bookName = document.getElementById("book-name").value;
-            const authorName = document.getElementById("author-name").value;
-            const pages = document.getElementById("total-pages").value;
-            const readStatus = document.getElementById("read-status").value;
-            const newBook = new Books(bookName, authorName, pages, readStatus)
-            console.log(newBook)
-        } );
+
     }
 
 }
 
-const bookList = new BookList();
-bookList.render();
-const addBooks = new AddBooks();
-addBooks.userInput();
 
+document.addEventListener("DOMContentLoaded", Library.render)
+document.querySelector("#book-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    const bookName = document.getElementById("book-name").value;
+    const authorName = document.getElementById("author-name").value;
+    const pages = document.getElementById("total-pages").value;
+    let readStatus = document.getElementById("read-status");
+    if(readStatus.checked){
+        readStatus = 'Read';
+    }
+    else{
+        readStatus = 'Not Read';
+    }
+    const newBook = new Books(bookName, authorName, pages, readStatus)
+    Library.addBooks(newBook);
+    BookLocalStore.addBook(newBook)
+    Library.clearField();
+} );
+
+document.querySelector(".table-data").addEventListener("click", (e)=>{
+    let del = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+    Library.removeBook(e.target)
+    BookLocalStore.removeBook(del);
+});
 
